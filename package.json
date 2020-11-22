@@ -1,0 +1,51 @@
+{
+  "name": "react-material-dashboard",
+  "author": "DeviasIO",
+  "licence": "MIT",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "start": "npm-run-all --parallel start:**",
+    "start:client": "react-scripts start",
+    "start:server": "node ./server/server.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/styles": "^4.10.0",
+    "axios": "^0.21.0",
+    "clsx": "^1.1.1",
+    "express": "^4.17.1",
+    "formik": "^2.2.5",
+    "history": "^5.0.0",
+    "http-proxy-middleware": "^1.0.6",
+    "lodash": "^4.17.20",
+    "npm-run-all": "^4.1.5",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-feather": "^2.0.9",
+    "react-helmet": "^6.1.0",
+    "react-router": "^6.0.0-beta.0",
+    "react-router-dom": "^6.0.0-beta.0",
+    "react-scripts": "^3.4.4",
+    "yup": "^0.29.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
