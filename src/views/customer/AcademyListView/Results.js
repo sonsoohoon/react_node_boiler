@@ -65,7 +65,7 @@ const Results = ({ className, customers, ...rest }) => {
                   onClick={() => {
                     axios.get('/api') //for test
                       .then((res) => {console.log(res.data);})
-                    navigate('/admin/academy', { replace: true });
+                    navigate('/admin/academyDetail', { replace: true });
                   }}
                 >
                   <TableCell>
