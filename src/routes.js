@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/DashboardLayout';
-import CustomerListView from 'src/views/customer/AcademyListView';
+import CustomerListView from 'src/views/Academy/AcademyListView';
 import NotFoundView from 'src/views/errors/NotFoundView';
-import AcademyDetailView from "./views/customer/AcademyDetailView";
+import AcademyDetailView from "./views/Academy/AcademyDetailView";
 
 const routes = [
   {
