@@ -14,6 +14,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import * as axios from "axios";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -22,12 +23,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Results = ({ className, customers, ...rest }) => {
+const Results = ({ className, academys, ...rest }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
-
+console.log(rest);
+console.log(academys);
   const handleLimitChange = (event) => {
     setLimit(event.target.value);
   };
@@ -57,25 +59,24 @@ const Results = ({ className, customers, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {customers.slice(0, limit).map((customer) => (
+              {academys.slice(0, limit).map((academy) => (
                 <TableRow
                   hover
-                  key={customer.id}
+                  key={academy.id}
                   selected={false}
                   onClick={() => {
-                    axios.get('/api') //for test
-                      .then((res) => {console.log(res.data);})
-                    navigate('/admin/academyDetail', { replace: true });
+                    navigate('/admin/academy/' + academy.academyId, {replace: false});
+                    //history.push('/admin/academy/' + academy.academyId);
                   }}
                 >
                   <TableCell>
-                    {customer.academyId}
+                    {academy.academyId}
                   </TableCell>
                   <TableCell>
-                    {customer.name}
+                    {academy.name}
                   </TableCell>
                   <TableCell>
-                    {customer.phonenum}
+                    {academy.phonenum}
                   </TableCell>
                 </TableRow>
               ))}
@@ -84,7 +85,7 @@ const Results = ({ className, customers, ...rest }) => {
         </Box>
       <TablePagination
         component="div"
-        count={customers.length}
+        count={academys.length}
         onChangePage={handlePageChange}
         onChangeRowsPerPage={handleLimitChange}
         page={page}
@@ -97,7 +98,7 @@ const Results = ({ className, customers, ...rest }) => {
 
 Results.propTypes = {
   className: PropTypes.string,
-  customers: PropTypes.array.isRequired
+  academys: PropTypes.array.isRequired
 };
 
 export default Results;

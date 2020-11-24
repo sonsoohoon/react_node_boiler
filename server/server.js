@@ -5,8 +5,10 @@ const port =process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded( {extended : false } ));
 
-var indexRouter = require('./routes/index');
+let indexRouter = require('./controller/index');
+const academyRouter = require('./controller/academy');
 app.use(indexRouter);
+app.use(academyRouter);
 
 app.listen(port, ()=>{
   console.log(`express is running on ${port}`);

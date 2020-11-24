@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/DashboardLayout';
-import CustomerListView from 'src/views/Academy/AcademyListView';
+import AcademyListView from 'src/views/Academy/AcademyListView';
 import NotFoundView from 'src/views/errors/NotFoundView';
 import AcademyDetailView from "./views/Academy/AcademyDetailView";
 
@@ -10,13 +10,13 @@ const routes = [
     path: 'admin',
     element: <DashboardLayout />,
     children: [
-      { path: 'academy', element: <CustomerListView /> },
-      { path: 'academyDetail', element: <AcademyDetailView /> },
-      { path: 'car', element: <CustomerListView /> },
-      { path: 'driver', element: <CustomerListView /> },
-      { path: 'driverTogether', element: <CustomerListView /> },
-      { path: 'children', element: <CustomerListView /> },
-      { path: 'driveSchedule', element: <CustomerListView /> },
+      { path: 'academy', element: <AcademyListView /> },
+      { path: 'academy/:id', element: <AcademyDetailView /> },
+      { path: 'car', element: <AcademyListView /> },
+      { path: 'driver', element: <AcademyListView /> },
+      { path: 'driverTogether', element: <AcademyListView /> },
+      { path: 'children', element: <AcademyListView /> },
+      { path: 'driveSchedule', element: <AcademyListView /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },

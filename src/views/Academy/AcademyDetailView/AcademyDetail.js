@@ -35,9 +35,9 @@ const useStyles = makeStyles(() => ({
 const AcademyDetail = ({ className, ...rest }) => {
   const classes = useStyles();
   const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
+    academyId: '1',
+    name: '늘푸른 유치원',
+    phonenum: '0212345667',
     phone: '',
     state: 'Alabama',
     country: 'USA'
@@ -59,28 +59,23 @@ const AcademyDetail = ({ className, ...rest }) => {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
+          subheader="학원 정보를 등록하거나 수정할 수 있습니다."
+          title="학원 등록/수정"
         />
         <Divider />
         <CardContent>
-          <Grid
-            container
-            spacing={3}
-          >
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
+          <Grid container spacing={3}>
+            <Grid item lg={6}>
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
-                label="First name"
-                name="firstName"
+                helperText="학원ID(수정불가)"
+                label="학원ID"
+                name="academyId"
                 onChange={handleChange}
                 required
-                value={values.firstName}
+                readOnly={true}
+                disabled
+                value={values.academyId}
                 variant="outlined"
               />
             </Grid>
@@ -91,11 +86,11 @@ const AcademyDetail = ({ className, ...rest }) => {
             >
               <TextField
                 fullWidth
-                label="Last name"
-                name="lastName"
+                label="학원 이름"
+                name="name"
                 onChange={handleChange}
                 required
-                value={values.lastName}
+                value={values.name}
                 variant="outlined"
               />
             </Grid>
@@ -106,44 +101,15 @@ const AcademyDetail = ({ className, ...rest }) => {
             >
               <TextField
                 fullWidth
-                label="Email Address"
-                name="email"
+                label="학원 전화번호"
+                name="phonenum"
                 onChange={handleChange}
                 required
-                value={values.email}
+                value={values.phonenum}
                 variant="outlined"
               />
             </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Phone Number"
-                name="phone"
-                onChange={handleChange}
-                type="number"
-                value={values.phone}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Country"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="outlined"
-              />
-            </Grid>
+
             <Grid
               item
               md={6}
@@ -173,16 +139,22 @@ const AcademyDetail = ({ className, ...rest }) => {
           </Grid>
         </CardContent>
         <Divider />
-        <Box
+        <Box m={0}
           display="flex"
-          justifyContent="flex-end"
+          justifyContent="space-between"
           p={2}
         >
           <Button
             color="primary"
             variant="contained"
           >
-            Save details
+            저장
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+          >
+            삭제
           </Button>
         </Box>
       </Card>

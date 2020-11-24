@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Box,
   Container,
@@ -18,23 +18,26 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const CustomerListView = () => {
+const AcademyListView = ({...rest}) => {
   const classes = useStyles();
-  const [customers] = useState(data);
-
+  const [academys] = useState(data);
+console.log(rest);
+  useEffect(() => {
+    //학원정보 가져오기
+  })
   return (
     <Page
       className={classes.root}
-      title="Customers"
+      title="학원 정보"
     >
       <Container maxWidth={false}>
         <Toolbar />
         <Box mt={3}>
-          <Results customers={customers} />
+          <Results academys={academys} />
         </Box>
       </Container>
     </Page>
   );
 };
 
-export default CustomerListView;
+export default AcademyListView;
