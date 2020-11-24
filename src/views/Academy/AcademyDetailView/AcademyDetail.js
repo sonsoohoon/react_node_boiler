@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const AcademyDetail = ({ className, academy, ...rest }) => {
+const AcademyDetail = ({ className, academy, page, ...rest }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [values, setValues] = useState(academy);
@@ -51,7 +51,7 @@ const AcademyDetail = ({ className, academy, ...rest }) => {
     try {
       const academy = await axios.get('/api/academy');
       console.log(academy.data);
-      navigate(`/admin/academy`, {replace: false});
+      navigate(`/admin/academy?page=${page}`, {replace: false});
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +62,7 @@ const AcademyDetail = ({ className, academy, ...rest }) => {
     try {
       const academy = await axios.get('/api/academy');
       console.log(academy.data);
-      navigate(`/admin/academy`, {replace: false});
+      navigate(`/admin/academy?page=${page}`, {replace: false});
     } catch (error) {
       console.log(error);
     }

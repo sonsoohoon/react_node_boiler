@@ -7,6 +7,8 @@ import {
   makeStyles
 } from '@material-ui/core';
 import NavItem from './NavItem';
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 
 
 const items = [
@@ -37,18 +39,10 @@ const items = [
 ];
 
 const useStyles = makeStyles(() => ({
-  mobileDrawer: {
-    width: 256
-  },
   desktopDrawer: {
-    width: 256,
+    width: 170,
     top: 64,
     height: 'calc(100% - 64px)'
-  },
-  avatar: {
-    cursor: 'pointer',
-    width: 64,
-    height: 64
   }
 }));
 
@@ -76,14 +70,9 @@ const NavBar = () => {
 
   return (
     <>
-        <Drawer
-          anchor="left"
-          classes={{ paper: classes.desktopDrawer }}
-          open
-          variant="persistent"
-        >
+        <Paper classes={{ paper: classes.desktopDrawer }}>
           {content}
-        </Drawer>
+        </Paper>
     </>
   );
 };

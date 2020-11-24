@@ -53,7 +53,7 @@ const Toolbar = ({ className, ...rest }) => {
           신규 추가
         </Button>
       </Box>
-      <Box mt={3}>
+      <Box mt={2}>
         <Card>
           <CardContent>
             <Box maxWidth={500}>

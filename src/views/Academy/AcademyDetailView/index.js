@@ -19,8 +19,9 @@ const useStyles = makeStyles((theme) => ({
 
 const AcademyDetailView = () => {
   const classes = useStyles();
-  const { state: academy} = useLocation();
-
+  const { state: academy, search: queryString} = useLocation();
+  const page = queryString.split('=')[1];
+  console.log(page);
   return (
     <Page
       className={classes.root}
@@ -28,7 +29,7 @@ const AcademyDetailView = () => {
     >
       <Container maxWidth="lg">
           <Grid item lg={12}>
-            <AcademyDetail academy={academy}/>
+            <AcademyDetail academy={academy} page={page}/>
           </Grid>
       </Container>
     </Page>

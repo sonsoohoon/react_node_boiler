@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import data from './data';
+
 import {
   Box,
   Card,
@@ -13,25 +15,27 @@ import {
   TableRow,
   makeStyles
 } from '@material-ui/core';
-import * as axios from "axios";
-import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-  avatar: {
-    marginRight: theme.spacing(2)
-  }
+  root: {overflowX: "auto"},
 }));
 
-const Results = ({ className, academys, ...rest }) => {
+const Results = ({ className, currentPage, ...rest }) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [limit, setLimit] = useState(10);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(currentPage);
+  const [count, setCount] = useState(0);
+  const [tempAcademy] = useState(data);
+  const [academys, setAcademys] = useState([]);
 
-  const handleLimitChange = (event) => {
-    setLimit(event.target.value);
-  };
+  useEffect(() => {
+    console.log(page);
+    //여기서 리스트 api 호출
+    const startPage = page === 0 ? page : page*10;
+    console.log(startPage);
+    setCount(tempAcademy.length);
+    setAcademys(tempAcademy.slice(startPage,startPage+10));
+  }, [page])
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -58,13 +62,13 @@ const Results = ({ className, academys, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {academys.slice(0, limit).map((academy) => (
+              {academys.map((academy) => (
                 <TableRow
                   hover
                   key={academy.id}
                   selected={false}
                   onClick={() => {
-                    navigate(`/admin/academy/${academy.academyId}`, {replace: false, state: academy});
+                    navigate(`/admin/academy/${academy.academyId}?page=${page}`, {replace: false, state: academy});
                   }}
                 >
                   <TableCell>
@@ -83,12 +87,11 @@ const Results = ({ className, academys, ...rest }) => {
         </Box>
       <TablePagination
         component="div"
-        count={academys.length}
+        count={count}
         onChangePage={handlePageChange}
-        onChangeRowsPerPage={handleLimitChange}
         page={page}
-        rowsPerPage={limit}
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPage={10} //50개로 고정
+        rowsPerPageOptions={[10]}//페이지로우 옵션 없음
       />
     </Card>
   );

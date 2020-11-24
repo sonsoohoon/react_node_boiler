@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Box,
   Container,
@@ -7,8 +7,7 @@ import {
 import Page from 'src/components/Page';
 import Results from './Results';
 import Toolbar from './Toolbar';
-import data from './data';
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,11 +20,9 @@ const useStyles = makeStyles((theme) => ({
 
 const AcademyListView = () => {
   const classes = useStyles();
-  const [academys] = useState(data);
+  const { search: queryString} = useLocation();
+  const page = isNaN(queryString.split('=')[1]) ? 0 : queryString.split('=')[1];
 
-  useEffect(() => {
-    //학원정보 가져오기
-  })
   return (
     <Page
       className={classes.root}
@@ -34,7 +31,7 @@ const AcademyListView = () => {
       <Container maxWidth={false}>
         <Toolbar />
         <Box mt={3}>
-          <Results academys={academys} />
+          <Results currentPage={page}/>
         </Box>
       </Container>
     </Page>
