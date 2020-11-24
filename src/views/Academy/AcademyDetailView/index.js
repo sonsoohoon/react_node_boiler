@@ -6,6 +6,7 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import AcademyDetail from './AcademyDetail';
+import {useLocation, useParams} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AcademyDetailView = (props) => {
+const AcademyDetailView = () => {
   const classes = useStyles();
-  //const { id } = match.params;
-  console.log(props);
+  const { state: academy} = useLocation();
+
   return (
     <Page
       className={classes.root}
@@ -27,7 +28,7 @@ const AcademyDetailView = (props) => {
     >
       <Container maxWidth="lg">
           <Grid item lg={12}>
-            <AcademyDetail />
+            <AcademyDetail academy={academy}/>
           </Grid>
       </Container>
     </Page>

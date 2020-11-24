@@ -12,6 +12,8 @@ import {
   TextField,
   makeStyles
 } from '@material-ui/core';
+import * as axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const states = [
   {
@@ -32,16 +34,10 @@ const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const AcademyDetail = ({ className, ...rest }) => {
+const AcademyDetail = ({ className, academy, ...rest }) => {
   const classes = useStyles();
-  const [values, setValues] = useState({
-    academyId: '1',
-    name: '늘푸른 유치원',
-    phonenum: '0212345667',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
-  });
+  const navigate = useNavigate();
+  const [values, setValues] = useState(academy);
 
   const handleChange = (event) => {
     setValues({
@@ -49,6 +45,28 @@ const AcademyDetail = ({ className, ...rest }) => {
       [event.target.name]: event.target.value
     });
   };
+
+  const handleSaveButtonClick = async () => {
+    //저장 api호출
+    try {
+      const academy = await axios.get('/api/academy');
+      console.log(academy.data);
+      navigate(`/admin/academy`, {replace: false});
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleDeleteButtonClick = async () => {
+    //삭제 api 호출
+    try {
+      const academy = await axios.get('/api/academy');
+      console.log(academy.data);
+      navigate(`/admin/academy`, {replace: false});
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <form
@@ -147,12 +165,14 @@ const AcademyDetail = ({ className, ...rest }) => {
           <Button
             color="primary"
             variant="contained"
+            onClick={handleSaveButtonClick}
           >
             저장
           </Button>
           <Button
             color="primary"
             variant="contained"
+            onClick={handleDeleteButtonClick}
           >
             삭제
           </Button>

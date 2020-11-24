@@ -12,6 +12,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
+import {useNavigate} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Toolbar = ({ className, ...rest }) => {
   const classes = useStyles();
-
+  const navigate = useNavigate();
   return (
     <div
       className={clsx(classes.root, className)}
@@ -38,8 +39,18 @@ const Toolbar = ({ className, ...rest }) => {
         <Button
           color="primary"
           variant="contained"
+          onClick={() => {
+            //테이블에서 가장 높은 id값 가져옴
+            const academy = {
+              academyId: 9999,
+              name: '',
+              phonenum: '',
+              code: '9999'
+            }
+            navigate(`/admin/academy/${academy.academyId}`, { replace: false, state: academy});
+          }}
         >
-          Add customer
+          신규 추가
         </Button>
       </Box>
       <Box mt={3}>

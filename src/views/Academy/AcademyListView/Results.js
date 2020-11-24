@@ -28,8 +28,7 @@ const Results = ({ className, academys, ...rest }) => {
   const navigate = useNavigate();
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
-console.log(rest);
-console.log(academys);
+
   const handleLimitChange = (event) => {
     setLimit(event.target.value);
   };
@@ -65,8 +64,7 @@ console.log(academys);
                   key={academy.id}
                   selected={false}
                   onClick={() => {
-                    navigate('/admin/academy/' + academy.academyId, {replace: false});
-                    //history.push('/admin/academy/' + academy.academyId);
+                    navigate(`/admin/academy/${academy.academyId}`, {replace: false, state: academy});
                   }}
                 >
                   <TableCell>
