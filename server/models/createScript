@@ -1,0 +1,28 @@
+###############
+mysql이 로컬에 설치되어 있다는 가정하에 진행합니다.
+root계정으로 접속하여 test스키마에 2개 테이블을 생성합니다.
+###############
+
+CREATE DATABASE test DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+use test
+
+CREATE TABLE `dept` (
+`dept_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`name` int(11) DEFAULT NULL,
+PRIMARY KEY (`dept_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `emp` (
+`emp_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`dept_id` int(11) unsigned DEFAULT NULL,
+`name` int(11) DEFAULT NULL,
+PRIMARY KEY (`emp_id`),
+KEY `deptfk` (`dept_id`),
+CONSTRAINT `deptfk` FOREIGN KEY (`dept_id`) REFERENCES `dept` (`dept_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+###############
+sequelize-auto 명령어를 통해서 생성된 테이블로 모델을 만듬
+###############
+npx sequelize-auto -h 127.0.0.1 -d safeschoolbus_db -u root -x "safe@schoolbus123$%^" -p 3306 --dialect mysql -o models -l es6 --cm c --cp c

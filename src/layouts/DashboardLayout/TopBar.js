@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import {
@@ -7,7 +7,6 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Logo from 'src/components/Logo';
-import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(() => ({
   root: {},

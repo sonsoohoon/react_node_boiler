@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import AcademyDetail from './AcademyDetail';
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +21,7 @@ const AcademyDetailView = () => {
   const classes = useStyles();
   const { state: academy, search: queryString} = useLocation();
   const page = queryString.split('=')[1];
-  console.log(page);
+  
   return (
     <Page
       className={classes.root}

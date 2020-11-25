@@ -35,8 +35,8 @@ const DashboardLayout = () => {
   return (
     <div className={classes.root}>
       <TopBar/>
-      <NavBar/>
       <div className={classes.wrapper}>
+        <NavBar/>
         <div className={classes.contentContainer}>
           <div className={classes.content}>
             <Outlet />

@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Box,
-  Drawer,
   List,
   makeStyles
 } from '@material-ui/core';
 import NavItem from './NavItem';
-import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
 

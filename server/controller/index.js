@@ -1,8 +1,21 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const models = require('../models/index');
 
-router.get('/api', (req, res, next) => {
-  res.status(200).json({ name : 'shson'});
+router.get('/api', async (req, res, next) => {
+  try{
+    const users = await models.dept.findAll({
+      include: [{
+        model: models.emp,
+        attributes: ['empId', 'name']
+      }]
+    });
+    res.status(200).json(users);
+
+  } catch(error) {
+    console.error(error);
+    next(error);
+  }
 })
 
 module.exports = router;

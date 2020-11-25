@@ -29,10 +29,9 @@ const Results = ({ className, currentPage, ...rest }) => {
   const [academys, setAcademys] = useState([]);
 
   useEffect(() => {
-    console.log(page);
     //여기서 리스트 api 호출
     const startPage = page === 0 ? page : page*10;
-    console.log(startPage);
+
     setCount(tempAcademy.length);
     setAcademys(tempAcademy.slice(startPage,startPage+10));
   }, [page])

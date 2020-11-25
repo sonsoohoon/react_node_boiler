@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -27,6 +27,14 @@ const useStyles = makeStyles((theme) => ({
 const Toolbar = ({ className, ...rest }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [keyword, setKeyword] = useState('');
+
+  const handleChange = (event) => {
+    setKeyword(event.target.value);
+    console.log(event.target.value);
+    //여기서 keyword검색 api 호출
+  };
+
   return (
     <div
       className={clsx(classes.root, className)}
@@ -73,6 +81,8 @@ const Toolbar = ({ className, ...rest }) => {
                 }}
                 placeholder="학원 검색"
                 variant="outlined"
+                value={keyword}
+                onChange={handleChange}
               />
             </Box>
           </CardContent>
